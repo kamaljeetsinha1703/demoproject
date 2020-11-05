@@ -1,0 +1,325 @@
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://integration.gwclient.smallsystems.cma.se/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" name="GWClientMUService"
+	targetNamespace="http://integration.gwclient.smallsystems.cma.se/">
+	<types>
+		<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://integration.gwclient.smallsystems.cma.se/"
+			xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns="http://schemas.xmlsoap.org/wsdl/"
+			targetNamespace="http://integration.gwclient.smallsystems.cma.se/"
+			version="1.0">
+			<xs:element name="logon" type="tns:logon_t" />
+			<xs:element name="logonResponse" type="tns:session_t" />
+			<xs:element name="logout" type="tns:session_t" />
+			<xs:element name="logoutResponse" type="tns:empty_t" />
+			<xs:element name="send" type="tns:send_t" />
+			<xs:element name="sendResponse" type="tns:sendResponse" />
+			<xs:element name="getUpdates" type="tns:session_t" />
+			<xs:element name="getUpdatesResponse"
+				type="tns:ParamsMtMsgArray" />
+			<xs:element name="sendACKNAK" type="tns:sendACKNAK_t" />
+			<xs:element name="sendACKNAKResponse" type="tns:empty_t" />
+			<xs:element name="fault" type="tns:fault_t" />
+			<xs:complexType name="logon_t">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="1" name="username"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="password"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="signature"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="clientWSUrl" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="session_t">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="1"
+						name="session_id" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="send_t">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="1"
+						name="session_id" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="message"
+						type="tns:ParamsMtMsg" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="sendACKNAK_t">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="1"
+						name="session_id" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="data"
+						type="tns:result_t" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ParamsMtMsg">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="1" name="block4"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgCopySrvId" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgCopySrvInfo" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgDelNotifRq" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgFinValidation" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="msgFormat"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="msgId"
+						type="xs:long" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgMacResult" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgNetInputTime" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="msgNetMir"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgNetOutputDate" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgPacResult" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="msgPde"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="msgPdm"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgPriority" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1"
+						name="msgReceiver" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="msgSender"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgSequence" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgSession" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgSubFormat" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="msgType"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgSrvTpId" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgEnd2EndRef" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgUserPriority" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="msgUserReference" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="format"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="refMsgUserReference" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType final="#all" name="ParamsMtMsgArray">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="item" nillable="true" type="tns:ParamsMtMsg" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:simpleType name="ack_nak_type">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="ACK" />
+					<xs:enumeration value="NAK" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:complexType name="sendResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="1" name="data"
+						type="tns:result_t" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="result_t">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="1" name="type"
+						type="tns:ack_nak_type" />
+					<xs:element maxOccurs="1" minOccurs="1" name="datetime"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="mir"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="ref"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="signature"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="code"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="description" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="info"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="empty_t" />
+			<xs:complexType name="fault_t">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="0" name="code"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0"
+						name="description" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="info"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</types>
+	<message name="GWClientMU_logoutResponse">
+		<part element="tns:logoutResponse" name="data">
+		</part>
+	</message>
+	<message name="GWClientMU_getUpdates">
+		<part element="tns:getUpdates" name="data">
+		</part>
+	</message>
+	<message name="gwClientFault">
+		<part element="tns:fault" name="data">
+		</part>
+	</message>
+	<message name="GWClientMU_logonResponse">
+		<part element="tns:logonResponse" name="data">
+		</part>
+	</message>
+	<message name="GWClientMU_sendResponse">
+		<part element="tns:sendResponse" name="data">
+		</part>
+	</message>
+	<message name="GWClientMU_sendACKNAKResponse">
+		<part element="tns:sendACKNAKResponse" name="data">
+		</part>
+	</message>
+	<message name="GWClientMU_logon">
+		<part element="tns:logon" name="data">
+		</part>
+	</message>
+	<message name="GWClientMU_logout">
+		<part element="tns:logout" name="data">
+		</part>
+	</message>
+	<message name="GWClientMU_getUpdatesResponse">
+		<part element="tns:getUpdatesResponse" name="data">
+		</part>
+	</message>
+	<message name="GWClientMU_send">
+		<part element="tns:send" name="data">
+		</part>
+	</message>
+	<message name="GWClientMU_sendACKNAK">
+		<part element="tns:sendACKNAK" name="data">
+		</part>
+	</message>
+	<portType name="GWClientMU">
+		<operation name="logon">
+			<input message="tns:GWClientMU_logon">
+			</input>
+			<output message="tns:GWClientMU_logonResponse">
+			</output>
+			<fault message="tns:gwClientFault" name="gwFault">
+			</fault>
+		</operation>
+		<operation name="logout">
+			<input message="tns:GWClientMU_logout">
+			</input>
+			<output message="tns:GWClientMU_logoutResponse">
+			</output>
+			<fault message="tns:gwClientFault" name="gwFault">
+			</fault>
+		</operation>
+		<operation name="send">
+			<input message="tns:GWClientMU_send">
+			</input>
+			<output message="tns:GWClientMU_sendResponse">
+			</output>
+			<fault message="tns:gwClientFault" name="gwFault">
+			</fault>
+		</operation>
+		<operation name="getUpdates">
+			<input message="tns:GWClientMU_getUpdates">
+			</input>
+			<output message="tns:GWClientMU_getUpdatesResponse">
+			</output>
+			<fault message="tns:gwClientFault" name="gwFault">
+			</fault>
+		</operation>
+		<operation name="sendACKNAK">
+			<input message="tns:GWClientMU_sendACKNAK">
+			</input>
+			<output message="tns:GWClientMU_sendACKNAKResponse">
+			</output>
+			<fault message="tns:gwClientFault" name="gwFault">
+			</fault>
+		</operation>
+	</portType>
+	<binding name="GWClientMUBinding" type="tns:GWClientMU">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="logon">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="gwFault">
+				<soap:fault name="gwFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="logout">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="gwFault">
+				<soap:fault name="gwFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="send">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="gwFault">
+				<soap:fault name="gwFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="sendACKNAK">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="gwFault">
+				<soap:fault name="gwFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getUpdates">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="gwFault">
+				<soap:fault name="gwFault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="GWClientMUService">
+		<port binding="tns:GWClientMUBinding" name="GWClientMUPort">
+			<soap:address
+				location="http://172.16.2.8:7080/GWClientMUService/GWClientMU" />
+		</port>
+	</service>
+</definitions>
