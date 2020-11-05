@@ -26,7 +26,7 @@ public class ATSServiceController {
 	
 	@GetMapping("/ats")
 	public SessionT getSessionId() {
-		//my first test
+		//my first test ok
 		ObjectFactory of = new ObjectFactory();
 		LogonT logon = new LogonT();
 		logon.setClientWSUrl("");
